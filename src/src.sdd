@@ -1,0 +1,26 @@
+Spec: Extension Source
+
+Purpose:
+  Contain the TypeScript implementation and co-located tests for SpecDD language support.
+
+Structure:
+  ./extension.ts: Extension activation, provider registration, diagnostics, and commands.
+  ./language.ts: Shared language constants and section metadata.
+  ./parser.ts: Pure line-oriented parser and validator.
+  ./parser.test.ts: Jest tests for parser and validation behavior.
+  ./references.ts: Content-root, path, and related-spec resolution helpers.
+  ./references.test.ts: Jest tests for reference resolution behavior.
+
+Owns:
+  ./*.ts
+
+Can modify:
+  ./*.sdd
+
+Can read:
+  ../reference/LANGUAGE.md
+  ../vscode-plugin.sdd
+
+Must:
+  Put substantial behavior in same-basename specs next to the source file.
+  Keep test files co-located with the code they exercise.

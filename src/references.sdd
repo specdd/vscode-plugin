@@ -1,0 +1,27 @@
+Spec: SpecDD Reference Resolution
+
+Purpose:
+  Resolve content roots, explicit path references, related specs, and reference diagnostics for `.sdd` files.
+
+Owns:
+  ./references.ts
+  ./references.test.ts
+
+Can read:
+  ./parser.ts
+  ../reference/LANGUAGE.md
+
+Must:
+  Select content roots from explicit configuration first, then workspace or repository context.
+  Resolve `./`, `../`, and `/` path references according to the language reference.
+  Resolve glob references to matching existing files and directories.
+  Support `*`, `?`, `[abc]`, `{a,b}`, `**`, and `**/` glob constructs.
+  Cap glob resolution according to caller-provided limits and report capped results as warning-level diagnostics.
+  Keep resolved paths inside the selected content root unless reporting a warning.
+  Implement same-basename file specs, local directory specs, parent-held directory specs, and cumulative directory context.
+  Report unresolved paths and malformed or unmatched globs as warning-level diagnostics.
+  Deduplicate related specs and surface ambiguity instead of guessing.
+
+Must not:
+  Import `vscode`.
+  Recursively include descendant specs for non-glob directory links.

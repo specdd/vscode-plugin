@@ -1,0 +1,25 @@
+Spec: SpecDD Parser
+
+Purpose:
+  Parse `.sdd` text into sections, body entries, diagnostics, and explicit references without depending on VS Code APIs.
+
+Owns:
+  ./parser.ts
+  ./parser.test.ts
+
+Can read:
+  ./language.ts
+  ../reference/LANGUAGE.md
+
+Must:
+  Implement the formal line model, section headers, inline values, repeatability, bodyless sections, indentation, continuations, task lines, scenario steps, key-value lines, symbol references, inline code spans, and explicit path extraction from the language reference.
+  Preserve explicit path and glob text accurately while trimming only prose punctuation outside balanced glob constructs.
+  Normalize body entries and continuation lines into semantic text values.
+  Produce strict syntax diagnostics with stable codes and source ranges.
+  Keep filesystem access, content-root selection, and path existence checks outside the parser.
+  Keep parser tests close to language examples and edge cases.
+
+Must not:
+  Import `vscode`.
+  Treat comments as requirements, references, tasks, or write authority.
+  Treat inline trailing `#` text as a comment.

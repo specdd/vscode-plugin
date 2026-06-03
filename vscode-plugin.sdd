@@ -1,0 +1,66 @@
+Spec: VS Code SpecDD Plugin
+
+Purpose:
+  Provide best-practices Visual Studio Code language support for SpecDD `.sdd` files.
+
+Structure:
+  ./src: TypeScript extension source and co-located tests.
+  ./syntaxes: TextMate grammar.
+  ./icons: Packaged extension and language icon assets.
+  ./reference/LANGUAGE.md: Normative SpecDD language reference.
+  ./package.json: VS Code extension manifest and project scripts.
+  ./Makefile: Build, package, and release automation.
+  ./CONTRIBUTING.md: Contributor workflow.
+  ./DEVELOPMENT.md: Local development and architecture notes.
+  ./SECURITY.md: Private vulnerability reporting policy.
+
+Owns:
+  SpecDD language registration for `.sdd` files in VS Code.
+  Syntax highlighting, diagnostics, completions, symbols, folding, hovers, links, and related-spec commands.
+  Parser, validator, and reference-resolution behavior for `.sdd` files.
+
+Can modify:
+  ./vscode-plugin.sdd
+  ./src/**
+  ./syntaxes/**
+  ./icons/**
+  ./package.json
+  ./Makefile
+  ./language-configuration.json
+  ./README.md
+  ./CHANGELOG.md
+  ./CONTRIBUTING.md
+  ./DEVELOPMENT.md
+  ./SECURITY.md
+  ./LICENSE
+  ./.editorconfig
+  ./.vscodeignore
+  ./.vscode/**
+  ./tsconfig.json
+  ./tsconfig.build.json
+  ./jest.config.cjs
+  ./yarn.lock
+
+Can read:
+  ./reference/LANGUAGE.md
+
+References:
+  ./reference/LANGUAGE.md
+
+Must:
+  Treat `./reference/LANGUAGE.md` as the normative language contract.
+  Register `.sdd` as the only supported file extension.
+  Publish as `SpecDD - Specification-Driven Development framework` with a subtitle describing source-adjacent `.sdd` spec support.
+  Advertise https://specdd.ai as the homepage and https://github.com/specdd/vscode-plugin as the source repository.
+  Keep package version `1.0.0` until the first released artifact is intentionally superseded.
+  Package the SpecDD extension icon and `.sdd` file icon.
+  Expose only user-facing SpecDD commands in the Command Palette.
+  Support VSIX packaging and GitHub release automation for release artifacts.
+  Keep parser and validation logic independent from VS Code APIs.
+  Keep VS Code activation, commands, and providers in the extension layer.
+  Keep syntax highlighting lexical and fast.
+
+Must not:
+  Treat `.specdd` as a supported file extension.
+  Include direct Visual Studio Marketplace or Open VSX publishing commands.
+  Fetch remote language specifications during normal extension activation.

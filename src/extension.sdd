@@ -1,0 +1,28 @@
+Spec: VS Code Extension Entry Point
+
+Purpose:
+  Connect the pure SpecDD language services to VS Code activation, providers, diagnostics, and commands.
+
+Owns:
+  ./extension.ts
+
+Can read:
+  ./language.ts
+  ./parser.ts
+  ./references.ts
+  ../reference/LANGUAGE.md
+
+Must:
+  Register diagnostics, completions, document symbols, folding ranges, hovers, document links, and SpecDD commands for `.sdd` documents.
+  Link exact path references directly when they resolve to an existing target inside the content root.
+  Link glob references directly when they resolve to one match and through a picker when they resolve to multiple matches.
+  Keep helper commands used by internal links out of the public Command Palette.
+  Convert parser diagnostics to VS Code diagnostics only in this layer.
+  Keep parser, validation, and reference-resolution rules delegated to pure source modules.
+  Resolve content-root settings through the reference helper before creating links or workspace diagnostics.
+  Avoid long-running workspace scans during extension activation.
+
+Must not:
+  Register `.specdd` as a supported language extension.
+  Fetch the language reference or any remote resource during activation.
+  Put core language parsing rules directly in the VS Code provider layer.

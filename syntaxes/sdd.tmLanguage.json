@@ -1,0 +1,492 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "SpecDD",
+  "scopeName": "source.sdd",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#task-section"
+    },
+    {
+      "include": "#scenario-section"
+    },
+    {
+      "include": "#meta-section"
+    },
+    {
+      "include": "#positive-section"
+    },
+    {
+      "include": "#negative-section"
+    },
+    {
+      "include": "#required-section"
+    },
+    {
+      "include": "#default-section"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "name": "meta.comment.line.sdd",
+      "match": "^(\\s*)(#.*)$",
+      "captures": {
+        "1": {
+          "name": "punctuation.whitespace.indentation.sdd"
+        },
+        "2": {
+          "name": "comment.line.number-sign.sdd"
+        }
+      }
+    },
+    "section-end": {
+      "end": "^(?=(?:Spec|Platform|Purpose|Structure|Owns|Can modify|Can read|References|Must|Must not|Forbids|Depends on|Exposes|Accepts|Returns|Raises|Handles|Tasks|Done when|Scenario|Example):)"
+    },
+    "task-section": {
+      "name": "meta.section.tasks.sdd",
+      "begin": "^(Tasks)(:)(?:\\s+(.*))?$",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.section.sdd"
+        },
+        "2": {
+          "name": "punctuation.separator.section.sdd"
+        },
+        "3": {
+          "name": "string.unquoted.section-value.sdd"
+        }
+      },
+      "end": "^(?=(?:Spec|Platform|Purpose|Structure|Owns|Can modify|Can read|References|Must|Must not|Forbids|Depends on|Exposes|Accepts|Returns|Raises|Handles|Tasks|Done when|Scenario|Example):)",
+      "patterns": [
+        {
+          "include": "#task-body"
+        }
+      ]
+    },
+    "scenario-section": {
+      "name": "meta.section.scenario.sdd",
+      "begin": "^(Scenario)(:)(?:\\s+(.*))?$",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.section.sdd"
+        },
+        "2": {
+          "name": "punctuation.separator.section.sdd"
+        },
+        "3": {
+          "name": "string.unquoted.section-value.sdd"
+        }
+      },
+      "end": "^(?=(?:Spec|Platform|Purpose|Structure|Owns|Can modify|Can read|References|Must|Must not|Forbids|Depends on|Exposes|Accepts|Returns|Raises|Handles|Tasks|Done when|Scenario|Example):)",
+      "patterns": [
+        {
+          "include": "#body"
+        }
+      ]
+    },
+    "meta-section": {
+      "name": "meta.section.header.sdd",
+      "begin": "^(Spec|Platform)(:)(?:\\s+(.*))?$",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.section.meta.sdd"
+        },
+        "2": {
+          "name": "punctuation.separator.section.sdd"
+        },
+        "3": {
+          "name": "string.unquoted.section-value.sdd"
+        }
+      },
+      "end": "^(?=(?:Spec|Platform|Purpose|Structure|Owns|Can modify|Can read|References|Must|Must not|Forbids|Depends on|Exposes|Accepts|Returns|Raises|Handles|Tasks|Done when|Scenario|Example):)",
+      "patterns": [
+        {
+          "include": "#body"
+        }
+      ]
+    },
+    "positive-section": {
+      "name": "meta.section.header.sdd",
+      "begin": "^(Can modify|Can read|Exposes|Accepts|Returns|Handles)(:)(?:\\s+(.*))?$",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.section.positive.sdd"
+        },
+        "2": {
+          "name": "punctuation.separator.section.sdd"
+        },
+        "3": {
+          "name": "string.unquoted.section-value.sdd"
+        }
+      },
+      "end": "^(?=(?:Spec|Platform|Purpose|Structure|Owns|Can modify|Can read|References|Must|Must not|Forbids|Depends on|Exposes|Accepts|Returns|Raises|Handles|Tasks|Done when|Scenario|Example):)",
+      "patterns": [
+        {
+          "include": "#body"
+        }
+      ]
+    },
+    "negative-section": {
+      "name": "meta.section.header.sdd",
+      "begin": "^(Must not|Forbids|Raises)(:)(?:\\s+(.*))?$",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.section.negative.sdd"
+        },
+        "2": {
+          "name": "punctuation.separator.section.sdd"
+        },
+        "3": {
+          "name": "string.unquoted.section-value.sdd"
+        }
+      },
+      "end": "^(?=(?:Spec|Platform|Purpose|Structure|Owns|Can modify|Can read|References|Must|Must not|Forbids|Depends on|Exposes|Accepts|Returns|Raises|Handles|Tasks|Done when|Scenario|Example):)",
+      "patterns": [
+        {
+          "include": "#body"
+        }
+      ]
+    },
+    "required-section": {
+      "name": "meta.section.header.sdd",
+      "begin": "^(Must)(:)(?:\\s+(.*))?$",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.section.required.sdd"
+        },
+        "2": {
+          "name": "punctuation.separator.section.sdd"
+        },
+        "3": {
+          "name": "string.unquoted.section-value.sdd"
+        }
+      },
+      "end": "^(?=(?:Spec|Platform|Purpose|Structure|Owns|Can modify|Can read|References|Must|Must not|Forbids|Depends on|Exposes|Accepts|Returns|Raises|Handles|Tasks|Done when|Scenario|Example):)",
+      "patterns": [
+        {
+          "include": "#body"
+        }
+      ]
+    },
+    "default-section": {
+      "name": "meta.section.header.sdd",
+      "begin": "^(Purpose|Structure|Owns|References|Depends on|Done when|Example)(:)(?:\\s+(.*))?$",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.section.sdd"
+        },
+        "2": {
+          "name": "punctuation.separator.section.sdd"
+        },
+        "3": {
+          "name": "string.unquoted.section-value.sdd"
+        }
+      },
+      "end": "^(?=(?:Spec|Platform|Purpose|Structure|Owns|Can modify|Can read|References|Must|Must not|Forbids|Depends on|Exposes|Accepts|Returns|Raises|Handles|Tasks|Done when|Scenario|Example):)",
+      "patterns": [
+        {
+          "include": "#body"
+        }
+      ]
+    },
+    "body": {
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#continuation"
+        },
+        {
+          "include": "#scenario-step"
+        },
+        {
+          "include": "#key-value"
+        },
+        {
+          "include": "#inline"
+        }
+      ]
+    },
+    "task-body": {
+      "patterns": [
+        {
+          "include": "#comments"
+        },
+        {
+          "include": "#continuation"
+        },
+        {
+          "include": "#task-done-line"
+        },
+        {
+          "include": "#task-open-line"
+        },
+        {
+          "include": "#task-blocked-line"
+        },
+        {
+          "include": "#task-question-line"
+        },
+        {
+          "include": "#task-skipped-line"
+        },
+        {
+          "include": "#task-invalid-line"
+        },
+        {
+          "include": "#inline"
+        }
+      ]
+    },
+    "continuation": {
+      "name": "meta.continuation.sdd",
+      "match": "^(\\s{4,})(.*)$",
+      "captures": {
+        "1": {
+          "name": "punctuation.whitespace.indentation.sdd"
+        },
+        "2": {
+          "name": "markup.quote.continuation.sdd"
+        }
+      }
+    },
+    "task-done-line": {
+      "name": "meta.task.done.sdd",
+      "match": "^(\\s{2})(\\[(?:x|X)\\])(?:\\s+(#\\d+))?(.*)$",
+      "captures": {
+        "1": {
+          "name": "punctuation.whitespace.indentation.sdd"
+        },
+        "2": {
+          "name": "markup.changed.task.done.sdd"
+        },
+        "3": {
+          "name": "constant.numeric.task-id.sdd"
+        },
+        "4": {
+          "patterns": [
+            {
+              "include": "#inline"
+            }
+          ]
+        }
+      }
+    },
+    "task-open-line": {
+      "name": "meta.task.open.sdd",
+      "match": "^(\\s{2})(\\[ \\])(?:\\s+(#\\d+))?(.*)$",
+      "captures": {
+        "1": {
+          "name": "punctuation.whitespace.indentation.sdd"
+        },
+        "2": {
+          "name": "markup.inserted.task.open.sdd"
+        },
+        "3": {
+          "name": "constant.numeric.task-id.sdd"
+        },
+        "4": {
+          "patterns": [
+            {
+              "include": "#inline"
+            }
+          ]
+        }
+      }
+    },
+    "task-blocked-line": {
+      "name": "meta.task.blocked.sdd",
+      "match": "^(\\s{2})(\\[!\\])(?:\\s+(#\\d+))?(.*)$",
+      "captures": {
+        "1": {
+          "name": "punctuation.whitespace.indentation.sdd"
+        },
+        "2": {
+          "name": "keyword.operator.task.blocked.sdd"
+        },
+        "3": {
+          "name": "constant.numeric.task-id.sdd"
+        },
+        "4": {
+          "patterns": [
+            {
+              "include": "#inline"
+            }
+          ]
+        }
+      }
+    },
+    "task-question-line": {
+      "name": "meta.task.question.sdd",
+      "match": "^(\\s{2})(\\[\\?\\])(?:\\s+(#\\d+))?(.*)$",
+      "captures": {
+        "1": {
+          "name": "punctuation.whitespace.indentation.sdd"
+        },
+        "2": {
+          "name": "storage.modifier.task.question.sdd"
+        },
+        "3": {
+          "name": "constant.numeric.task-id.sdd"
+        },
+        "4": {
+          "patterns": [
+            {
+              "include": "#inline"
+            }
+          ]
+        }
+      }
+    },
+    "task-skipped-line": {
+      "name": "meta.task.skipped.sdd",
+      "match": "^(\\s{2})(\\[-\\])(?:\\s+(#\\d+))?(.*)$",
+      "captures": {
+        "1": {
+          "name": "punctuation.whitespace.indentation.sdd"
+        },
+        "2": {
+          "name": "comment.line.task.skipped.sdd"
+        },
+        "3": {
+          "name": "constant.numeric.task-id.sdd"
+        },
+        "4": {
+          "patterns": [
+            {
+              "include": "#inline"
+            }
+          ]
+        }
+      }
+    },
+    "task-invalid-line": {
+      "name": "meta.task.invalid.sdd",
+      "match": "^(\\s{2})(\\[[^\\]\\r\\n]*(?:\\]|$))(?:\\s+(#\\d+))?(.*)$",
+      "captures": {
+        "1": {
+          "name": "punctuation.whitespace.indentation.sdd"
+        },
+        "2": {
+          "name": "invalid.illegal.task-marker.sdd"
+        },
+        "3": {
+          "name": "constant.numeric.task-id.sdd"
+        },
+        "4": {
+          "patterns": [
+            {
+              "include": "#inline"
+            }
+          ]
+        }
+      }
+    },
+    "scenario-step": {
+      "name": "meta.scenario.step.sdd",
+      "match": "^(\\s{2})(Given|When|Then|And|But)(?=\\s|$)(.*)$",
+      "captures": {
+        "1": {
+          "name": "punctuation.whitespace.indentation.sdd"
+        },
+        "2": {
+          "name": "keyword.control.scenario.sdd"
+        },
+        "3": {
+          "patterns": [
+            {
+              "include": "#inline"
+            }
+          ]
+        }
+      }
+    },
+    "key-value": {
+      "name": "meta.key-value.sdd",
+      "match": "^(\\s{2})([^:\\s][^:]*?)(:)(\\s)(.*)$",
+      "captures": {
+        "1": {
+          "name": "punctuation.whitespace.indentation.sdd"
+        },
+        "2": {
+          "name": "variable.other.key.sdd"
+        },
+        "3": {
+          "name": "punctuation.separator.key-value.sdd"
+        },
+        "4": {
+          "name": "punctuation.whitespace.separator.sdd"
+        },
+        "5": {
+          "patterns": [
+            {
+              "include": "#inline"
+            }
+          ]
+        }
+      }
+    },
+    "inline": {
+      "patterns": [
+        {
+          "include": "#inline-code"
+        },
+        {
+          "include": "#escaped-at"
+        },
+        {
+          "include": "#path"
+        },
+        {
+          "include": "#symbol-reference"
+        },
+        {
+          "include": "#task-id"
+        }
+      ]
+    },
+    "inline-code": {
+      "match": "(`)([^`\\r\\n]*)(`)",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.raw.begin.sdd"
+        },
+        "2": {
+          "name": "markup.inline.raw.code.sdd"
+        },
+        "3": {
+          "name": "punctuation.definition.raw.end.sdd"
+        }
+      }
+    },
+    "escaped-at": {
+      "name": "constant.character.escape.sdd",
+      "match": "\\\\@"
+    },
+    "path": {
+      "name": "meta.path-reference.sdd",
+      "match": "(^|[\\s\\(\\[\\{<\"'`])((?:\\./|\\.\\./|/)[A-Za-z0-9_*?.,{}\\[\\]-]*(?:[A-Za-z0-9_*?}\\]])(?:/[A-Za-z0-9_*?.,{}\\[\\]-]*(?:[A-Za-z0-9_*?}\\]]))*)",
+      "captures": {
+        "2": {
+          "name": "markup.underline.link.path.sdd"
+        }
+      }
+    },
+    "symbol-reference": {
+      "name": "meta.symbol-reference.sdd",
+      "match": "(^|[\\s\\(\\[\\{<\"'])((?:@[_A-Za-z](?:[_A-Za-z0-9\\.:#\\\\/?!]*[_A-Za-z0-9#\\\\/?!])?(?:[\\.:](?=[^\\s\\)\\]\\}>\"']))?))",
+      "captures": {
+        "2": {
+          "name": "entity.name.function.symbol-reference.sdd"
+        }
+      }
+    },
+    "task-id": {
+      "name": "constant.numeric.task-id.sdd",
+      "match": "#\\d+\\b"
+    }
+  }
+}

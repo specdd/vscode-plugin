@@ -1,0 +1,18 @@
+Spec: SpecDD Language Metadata
+
+Purpose:
+  Provide shared constants and section metadata used by parser, providers, completions, and hovers.
+
+Owns:
+  ./language.ts
+
+Can read:
+  ../reference/LANGUAGE.md
+
+Must:
+  Keep canonical section labels, supported task markers, scenario keywords, and section descriptions aligned with the language reference.
+  Expose metadata as simple typed constants with no filesystem or VS Code dependencies.
+  Preserve section label spelling and case exactly as defined by the language reference.
+
+Must not:
+  Add behavior that belongs in the parser, reference resolver, or VS Code extension layer.

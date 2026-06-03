@@ -1,0 +1,272 @@
+{
+  "name": "specdd",
+  "displayName": "SpecDD - Specification-Driven Development framework",
+  "description": "Specification-Driven Development support for source-adjacent .sdd specs.",
+  "version": "1.0.0",
+  "publisher": "specdd",
+  "license": "Apache-2.0",
+  "homepage": "https://specdd.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/specdd/vscode-plugin"
+  },
+  "bugs": {
+    "url": "https://github.com/specdd/vscode-plugin/issues"
+  },
+  "icon": "icons/specdd.png",
+  "type": "module",
+  "packageManager": "yarn@1.22.22",
+  "main": "./dist/extension.js",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "specdd",
+    "specification",
+    "language support"
+  ],
+  "activationEvents": [
+    "onLanguage:sdd",
+    "onCommand:specdd.openRelatedSpec",
+    "onCommand:specdd.createMatchingSpec",
+    "onCommand:specdd.validateWorkspace",
+    "onCommand:specdd.showContentRoot"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "sdd",
+        "aliases": [
+          "SpecDD",
+          "sdd"
+        ],
+        "extensions": [
+          ".sdd"
+        ],
+        "icon": {
+          "light": "./icons/specdd.png",
+          "dark": "./icons/specdd.png"
+        },
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "sdd",
+        "scopeName": "source.sdd",
+        "path": "./syntaxes/sdd.tmLanguage.json"
+      }
+    ],
+    "configurationDefaults": {
+      "editor.tokenColorCustomizations": {
+        "textMateRules": [
+          {
+            "scope": [
+              "comment.line.number-sign.sdd",
+              "punctuation.whitespace.indentation.sdd"
+            ],
+            "settings": {
+              "foreground": "#6E7781"
+            }
+          },
+          {
+            "scope": "markup.quote.continuation.sdd",
+            "settings": {
+              "foreground": "#7A828E"
+            }
+          },
+          {
+            "scope": "entity.name.section.sdd",
+            "settings": {
+              "foreground": "#58A6FF",
+              "fontStyle": "bold"
+            }
+          },
+          {
+            "scope": "entity.name.section.meta.sdd",
+            "settings": {
+              "foreground": "#7A004B",
+              "fontStyle": "bold"
+            }
+          },
+          {
+            "scope": "entity.name.section.positive.sdd",
+            "settings": {
+              "foreground": "#22863A",
+              "fontStyle": "bold"
+            }
+          },
+          {
+            "scope": "entity.name.section.negative.sdd",
+            "settings": {
+              "foreground": "#D32F2F",
+              "fontStyle": "bold"
+            }
+          },
+          {
+            "scope": "keyword.control.section.required.sdd",
+            "settings": {
+              "foreground": "#B26A00",
+              "fontStyle": "bold"
+            }
+          },
+          {
+            "scope": "markup.changed.task.done.sdd",
+            "settings": {
+              "foreground": "#22863A",
+              "fontStyle": "bold"
+            }
+          },
+          {
+            "scope": "markup.inserted.task.open.sdd",
+            "settings": {
+              "foreground": "#58A6FF",
+              "fontStyle": "bold"
+            }
+          },
+          {
+            "scope": [
+              "keyword.operator.task.blocked.sdd",
+              "invalid.illegal.task-marker.sdd"
+            ],
+            "settings": {
+              "foreground": "#D32F2F",
+              "fontStyle": "bold"
+            }
+          },
+          {
+            "scope": "storage.modifier.task.question.sdd",
+            "settings": {
+              "foreground": "#7A004B",
+              "fontStyle": "bold"
+            }
+          },
+          {
+            "scope": "comment.line.task.skipped.sdd",
+            "settings": {
+              "foreground": "#6E7781",
+              "fontStyle": "italic"
+            }
+          },
+          {
+            "scope": [
+              "constant.numeric.task-id.sdd",
+              "keyword.control.scenario.sdd"
+            ],
+            "settings": {
+              "foreground": "#B26A00",
+              "fontStyle": "bold"
+            }
+          },
+          {
+            "scope": "markup.inline.raw.code.sdd",
+            "settings": {
+              "foreground": "#3A6EA5"
+            }
+          },
+          {
+            "scope": [
+              "punctuation.definition.raw.begin.sdd",
+              "punctuation.definition.raw.end.sdd"
+            ],
+            "settings": {
+              "foreground": "#7A828E"
+            }
+          },
+          {
+            "scope": "markup.underline.link.path.sdd",
+            "settings": {
+              "foreground": "#22863A",
+              "fontStyle": "underline"
+            }
+          },
+          {
+            "scope": "entity.name.function.symbol-reference.sdd",
+            "settings": {
+              "foreground": "#9B59D0"
+            }
+          }
+        ]
+      }
+    },
+    "commands": [
+      {
+        "command": "specdd.openRelatedSpec",
+        "title": "SpecDD: Open Related Spec",
+        "category": "SpecDD"
+      },
+      {
+        "command": "specdd.createMatchingSpec",
+        "title": "SpecDD: Create Matching Spec",
+        "category": "SpecDD"
+      },
+      {
+        "command": "specdd.validateWorkspace",
+        "title": "SpecDD: Validate Workspace",
+        "category": "SpecDD"
+      },
+      {
+        "command": "specdd.showContentRoot",
+        "title": "SpecDD: Show Content Root",
+        "category": "SpecDD"
+      }
+    ],
+    "configuration": {
+      "title": "SpecDD",
+      "properties": {
+        "specdd.contentRoot": {
+          "scope": "resource",
+          "type": [
+            "string",
+            "null"
+          ],
+          "default": null,
+          "markdownDescription": "Explicit content root for resolving `/` paths in `.sdd` files. When unset, the workspace folder containing the file is used."
+        },
+        "specdd.diagnostics.enabled": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": true,
+          "description": "Enable strict SpecDD syntax diagnostics for open `.sdd` files."
+        },
+        "specdd.references.validate": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": true,
+          "description": "Warn when explicit path references in `.sdd` files cannot be resolved."
+        },
+        "specdd.references.maxGlobResults": {
+          "scope": "resource",
+          "type": "number",
+          "default": 250,
+          "minimum": 1,
+          "maximum": 5000,
+          "description": "Maximum number of filesystem entries considered for a single SpecDD glob reference."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn build",
+    "build": "tsc -p tsconfig.build.json",
+    "compile": "yarn build",
+    "watch": "tsc -watch -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "yarn typecheck",
+    "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js",
+    "test:coverage": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --coverage",
+    "package": "vsce package --no-yarn --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/jest": "29.5.14",
+    "@types/node": "22.19.19",
+    "@types/vscode": "1.85.0",
+    "@vscode/vsce": "3.6.1",
+    "jest": "29.7.0",
+    "ts-jest": "29.4.9",
+    "typescript": "5.9.3"
+  }
+}

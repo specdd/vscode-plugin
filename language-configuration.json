@@ -1,0 +1,84 @@
+{
+  "comments": {
+    "lineComment": "#"
+  },
+  "brackets": [
+    [
+      "[",
+      "]"
+    ],
+    [
+      "(",
+      ")"
+    ],
+    [
+      "{",
+      "}"
+    ]
+  ],
+  "autoClosingPairs": [
+    {
+      "open": "[",
+      "close": "]"
+    },
+    {
+      "open": "(",
+      "close": ")"
+    },
+    {
+      "open": "{",
+      "close": "}"
+    },
+    {
+      "open": "\"",
+      "close": "\"",
+      "notIn": [
+        "comment"
+      ]
+    },
+    {
+      "open": "'",
+      "close": "'",
+      "notIn": [
+        "comment"
+      ]
+    },
+    {
+      "open": "`",
+      "close": "`",
+      "notIn": [
+        "comment"
+      ]
+    }
+  ],
+  "surroundingPairs": [
+    [
+      "[",
+      "]"
+    ],
+    [
+      "(",
+      ")"
+    ],
+    [
+      "{",
+      "}"
+    ],
+    [
+      "\"",
+      "\""
+    ],
+    [
+      "'",
+      "'"
+    ],
+    [
+      "`",
+      "`"
+    ]
+  ],
+  "wordPattern": "(-?\\d*\\.\\d\\w*)|([^\\`\\~\\!\\$\\%\\^\\&\\*\\(\\)\\=\\+\\[\\{\\]\\}\\\\\\|\\;\\'\\\"\\,\\<\\>\\s]+)",
+  "indentationRules": {
+    "increaseIndentPattern": "^\\s*(Spec|Platform|Purpose|Structure|Owns|Can modify|Can read|References|Must|Must not|Forbids|Depends on|Exposes|Accepts|Returns|Raises|Handles|Tasks|Done when|Scenario|Example):(?:\\s.*)?$"
+  }
+}

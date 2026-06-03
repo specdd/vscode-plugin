@@ -1,0 +1,21 @@
+Spec: SpecDD TextMate Grammar
+
+Purpose:
+  Provide fast lexical highlighting for SpecDD `.sdd` files in VS Code.
+
+Owns:
+  ./sdd.tmLanguage.json
+
+Can read:
+  ../reference/LANGUAGE.md
+
+Must:
+  Use `source.sdd` as the grammar scope name.
+  Highlight section labels by category, including metadata, positive, negative, required, and default labels.
+  Highlight comments, indentation, continuation text, task states, task ids, scenario steps, key-value keys, explicit paths, glob references, symbol references, and inline code spans.
+  Keep inline code spans visually distinct and avoid nested path or symbol highlighting inside them.
+  Keep the grammar lexical and safe for large files.
+
+Must not:
+  Implement semantic validation or filesystem resolution in the TextMate grammar.
+  Highlight `.specdd` as a supported file extension.
